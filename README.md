@@ -11,7 +11,7 @@ Static marketing website for AppsBrain Technologies.
    - Publish directory: `.`
 4. Deploy the site.
 
-`netlify.toml` is already configured with publish settings and caching/security headers.
+`netlify.toml` is already configured with publish settings, caching/security headers, and a fallback redirect so deep links won't show Netlify's default 404 page.
 
 ## Netlify Form Setup
 
