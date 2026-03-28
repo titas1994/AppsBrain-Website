@@ -1,4 +1,17 @@
 :root {
+  --bg: #060b17;
+  --surface: #0f172a;
+  --surface-2: #131f38;
+  --text: #e9f0ff;
+  --muted: #9caed1;
+  --border: #223252;
+  --brand: #5ea2ff;
+  --brand-2: #8b5cf6;
+  --success: #34d399;
+  --shadow: 0 20px 60px rgba(2, 6, 23, 0.45);
+}
+
+html[data-theme='light'] {
   --bg: #f3f7ff;
   --surface: #ffffff;
   --surface-2: #f8fbff;
@@ -11,32 +24,20 @@
   --shadow: 0 12px 40px rgba(8, 21, 52, 0.08);
 }
 
-html[data-theme='dark'] {
-  --bg: #070d1a;
-  --surface: #0f172a;
-  --surface-2: #111c33;
-  --text: #e8eefc;
-  --muted: #97a6c6;
-  --border: #203153;
-  --brand: #60a5fa;
-  --brand-2: #a78bfa;
-  --success: #34d399;
-  --shadow: 0 20px 50px rgba(2, 6, 23, 0.35);
-}
-
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, sans-serif;
-  background: radial-gradient(circle at top right, rgba(59,130,246,.12), transparent 30%), var(--bg);
+  background: radial-gradient(circle at 15% 5%, rgba(94,162,255,.20), transparent 30%), radial-gradient(circle at 85% 0%, rgba(139,92,246,.18), transparent 28%), var(--bg);
   color: var(--text);
   line-height: 1.65;
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 .container { width: min(1150px, 92%); margin-inline: auto; }
-.section { padding: 5.3rem 0; }
+.section { padding: 5.6rem 0; }
+.section-sm { padding: 1.2rem 0 2rem; }
 .alt { background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--brand) 4%, var(--surface-2))); }
 
 h1, h2, h3 { line-height: 1.2; margin: 0 0 .8rem; }
@@ -52,13 +53,24 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: -0.01em; }
   margin-bottom: .7rem;
 }
 
+.bg-blob{position:fixed;pointer-events:none;z-index:-1;filter:blur(70px);opacity:.42}
+.blob-1{width:280px;height:280px;background:#3b82f6;left:-80px;top:-40px}
+.blob-2{width:260px;height:260px;background:#7c3aed;right:-70px;top:120px}
+
+.trusted-label{text-align:center;color:var(--muted);font-weight:600;margin:0 0 .8rem}
+.trusted-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.7rem}
+.trusted-row span{display:grid;place-items:center;background:color-mix(in oklab,var(--surface) 92%,transparent);border:1px solid var(--border);border-radius:999px;padding:.55rem .7rem;color:var(--muted);font-weight:700;font-size:.9rem}
+
 .header {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 78%, transparent);
-  background: color-mix(in oklab, var(--bg) 82%, transparent);
-  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in oklab, var(--border) 92%, transparent);
+  background: color-mix(in oklab, var(--surface) 84%, transparent);
+  backdrop-filter: blur(18px);
+  margin: .8rem auto 0;
+  width: min(1180px,94%);
+  border-radius: 999px;
 }
 .nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; }
 .logo { font-weight: 800; font-size: 1.1rem; }
@@ -117,6 +129,7 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: -0.01em; }
 }
 .hero-visual { position: relative; min-height: 340px; }
 .glass-panel {
+  transform: translateY(18px);
   position: relative;
   z-index: 2;
   background: color-mix(in oklab, var(--surface) 75%, transparent);
@@ -331,7 +344,7 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--brand
 }
 
 @media (max-width: 980px) {
-  .hero-grid, .two-col, .cards-grid, .process-grid, .pricing-grid, .portfolio-grid, .footer-grid, .blog-grid, .testimonial-grid { grid-template-columns: 1fr 1fr; }
+  .hero-grid, .two-col, .cards-grid, .process-grid, .pricing-grid, .portfolio-grid, .footer-grid, .blog-grid, .testimonial-grid, .trusted-row { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 760px) {
@@ -351,6 +364,6 @@ input:focus, textarea:focus { outline: 2px solid color-mix(in oklab, var(--brand
     box-shadow: var(--shadow);
   }
   .nav.open { display: flex; }
-  .hero-grid, .two-col, .cards-grid, .process-grid, .pricing-grid, .portfolio-grid, .form-grid, .tech-grid, .footer-grid, .blog-grid, .usp-grid, .testimonial-grid { grid-template-columns: 1fr; }
+  .hero-grid, .two-col, .cards-grid, .process-grid, .pricing-grid, .portfolio-grid, .form-grid, .tech-grid, .footer-grid, .blog-grid, .usp-grid, .testimonial-grid, .trusted-row { grid-template-columns: 1fr; }
   .footer-top{flex-direction:column;align-items:flex-start}
 }
